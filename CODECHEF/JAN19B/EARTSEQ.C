@@ -1,5 +1,6 @@
 https://www.codechef.com/JAN19B/problems/EARTSEQ/
 
+
 /*  AUTHOR:AKASH JAIN
 *   USERNAME:akash19jain    
 *   DATE:13/01/2019 
