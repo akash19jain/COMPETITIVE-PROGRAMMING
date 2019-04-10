@@ -1,2 +1,2 @@
 # COMPETITIVE-PROGRAMMING
-A repository holding all the codes submitted by me on various CP platforms.
+A repository holding some of the codes submitted by me on various CP platforms.
