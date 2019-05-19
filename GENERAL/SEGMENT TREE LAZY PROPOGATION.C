@@ -1,3 +1,5 @@
+//Sometimes problems will ask you to update an interval from l to r, instead of a single element.
+
 /*  AUTHOR:AKASH JAIN
 *   USERNAME:akash19jain    
 *   DATE:18/05/2019 
