@@ -17,15 +17,17 @@ int main()
         int n;
         scanf("%d",&n);
         double a[n],ans=0;
+        long long ans1=0;
         for(int i=0;i<n;i++)
         {
             scanf("%lf",&a[i]);
-            ans+=a[i];
+            ans1+=a[i];
             double x=(double)1.0/a[i];
             //printf("%lf\n",x);
             ans+=x;
             //ans+=(double)(1.0/a[i]);
         }
+        ans=ans+ans1;
         printf("%.12lf",ans);
     }
     return 0;
