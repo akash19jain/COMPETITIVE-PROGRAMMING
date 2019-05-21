@@ -15,7 +15,7 @@ int main()
     //scanf("%lld",&t);
     while(t--)
     {
-        char arr[15];
+        char arr[1000007];
         scanf("%s", arr);
         int l=strlen(arr),c=0;
         for(int i=0;i<l;i++)
