@@ -7,12 +7,12 @@
 #include<string.h>
 #include<stdlib.h>
 #include<stdbool.h>
-#define SC1(x)          scanf("%lld",&x);
-#define SC2(x,y)        scanf("%lld%lld",&x,&y);
-#define SC3(x,y,z)      scanf("%lld%lld%lld",&x,&y,&z);
-#define PF1(x)          printf("%lld\n",x);
-#define PF2(x,y)        printf("%lld %lld\n",x,y);
-#define PF3(x,y,z)      printf("%lld %lld %lld\n",x,y,z);
+#define SC1(x)          scanf("%lld",&x)
+#define SC2(x,y)        scanf("%lld%lld",&x,&y)
+#define SC3(x,y,z)      scanf("%lld%lld%lld",&x,&y,&z)
+#define PF1(x)          printf("%lld\n",x)
+#define PF2(x,y)        printf("%lld %lld\n",x,y)
+#define PF3(x,y,z)      printf("%lld %lld %lld\n",x,y,z)
 #define REP(i,n)        for(long long i=0;i<(n);i++)
 #define FOR(i,a,b)      for(long long i=(a);i<=(b);i++)
 #define FORD(i,a,b)     for(long long i=(a);i>=(b);i--)
@@ -25,7 +25,7 @@
 #define MAX             10000000005
 #define MIN             -10000000005
 #define PI              3.1415926535897932384626433832795
-#define TEST(x)         printf("The value of \"%s\" is: %d\n",#x,x);
+#define TEST(x)         printf("The value of \"%s\" is: %d\n",#x,x)
 const int INF = 1<<29;
 typedef long long ll;
 typedef unsigned long long ull;
