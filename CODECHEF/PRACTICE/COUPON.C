@@ -43,18 +43,53 @@ long long gcd(long long u,long long v);
 
 int main()
 {
-    ll n,k;
-    SC2(n,k);
-    
-    REP(i,k)
+    CASES
     {
-        if(n%10==0)
-            n=n/10;
-        else    
-            n--;
-            
+        ll n,m;
+        SC2(n,m);
+        ll cost[n][m],disc[n][m];
+        REP(i,n)
+        {
+            REP(j,m)
+            {
+                SC1(cost[i][j]);
+            }
+        }
+        REP(i,n)
+        {
+            REP(j,m)
+            {
+                SC1(disc[i][j]);
+            }
+        }
+        ll dp[n][m];
+        MEM(dp,0);
+        ll min=MAX;
+        REP(i,m)
+        {
+            dp[0][i]=cost[0][i];
+            if(cost[0][i]<min)
+                min=cost[0][i];
+        }
+        ll min1=MAX;
+        FOR(i,1,n-1)
+        {
+            min1=MAX;
+            REP(j,m)
+            {
+                ll d=maxv(cost[i][j]-disc[i-1][j],0);
+                dp[i][j]=minv(dp[i-1][j]+d,min+cost[i][j]);
+                min1=minv(min1,dp[i][j]);
+            }
+            min=min1;
+        }
+        min=MAX;
+        REP(i,m)
+        {
+            min=minv(min,dp[n-1][i]);
+        }
+        PF1(min);
     }
-    PF1(n);
     return 0;
 }
  

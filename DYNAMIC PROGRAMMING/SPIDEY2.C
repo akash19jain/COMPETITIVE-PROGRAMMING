@@ -1,3 +1,4 @@
+//  https://www.codechef.com/problems/SPIDY2
 /*  AUTHOR:AKASH JAIN
 *   USERNAME:akash19jain    
 *   DATE:16/08/2019 
@@ -43,18 +44,28 @@ long long gcd(long long u,long long v);
 
 int main()
 {
-    ll n,k;
-    SC2(n,k);
-    
-    REP(i,k)
+    ll n;
+    SC1(n);
+    ll height[n];
+    ll dp[n];
+    REP(i,n)
     {
-        if(n%10==0)
-            n=n/10;
-        else    
-            n--;
-            
+        SC1(height[i]);
+        dp[i]=MAX;
     }
-    PF1(n);
+    
+    
+    dp[0]=0;
+
+    REP(i,n)
+    {
+        for(ll j=1;i-j>=0;j<<=1)
+        {
+            dp[i]=minv(dp[i],dp[i-j]+ABS(height[i]-height[i-j]));
+            //PF1(dp[i]);
+        }
+    }
+    PF1(dp[n-1]);
     return 0;
 }
  

@@ -43,18 +43,28 @@ long long gcd(long long u,long long v);
 
 int main()
 {
-    ll n,k;
-    SC2(n,k);
-    
-    REP(i,k)
+    ll n;
+    SC1(n);
+    char str[n+5];
+    SCS(str);
+    ll ans=0,max=0;
+    char a[3];
+    REP(i,n-1)
     {
-        if(n%10==0)
-            n=n/10;
-        else    
-            n--;
-            
+        ans=0;
+        REP(j,n-1)
+        {
+            if(str[i]==str[j] && str[i+1]==str[j+1])
+                ans++;
+        }
+        if(ans>max)
+        {
+            max=ans;
+            a[0]=str[i];
+            a[1]=str[i+1];
+        }
     }
-    PF1(n);
+    printf("%c%c\n",a[0],a[1]);
     return 0;
 }
  
