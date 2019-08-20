@@ -44,26 +44,13 @@ long long gcd(long long u,long long v);
 
 int main()
 {
-    ll n;
-    SC1(n);
-    ll arr[n],c=0;
-    REP(i,n)
-    {
-        SC1(arr[i]);
-    }
-	REP(i,n)
-	{
-		if(arr[i]%6==0 && arr[i]%5!=0)
-		{
-			c++;
-			FOR(j,i+1,n-1)
-			{
-				if(arr[i]==arr[j])
-					arr[j]=-1;
-			}
-		}
-	}
-    PF1(c);
+    double a;
+    scanf("%lf",&a);
+    double ans=2*a;
+	if(a>90)
+		ans=360-ans;
+
+    printf("%.2lf",ans);
     return 0;
 }
  

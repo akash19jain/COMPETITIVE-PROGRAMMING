@@ -40,30 +40,41 @@ int cmp(const void * a,const void * b);
 long long maxv(long long a,long long b);
 long long minv(long long a,long long b);
 long long gcd(long long u,long long v);
-
-
+ll n;
+int solve(int arr[][20],int n,int r,int c)
+{
+	if(r>n || c>n)
+		return 0;
+	if(arr[r][c]%2!=0)
+		return 0;
+    if(r==n && c==n)
+		return 1;
+	int a=solve(arr,n,r,c+1);
+	if(a==1)
+		return a;
+	a=solve(arr,n,r+1,c);
+	return a;
+}
 int main()
 {
-    ll n;
-    SC1(n);
-    ll arr[n],c=0;
-    REP(i,n)
-    {
-        SC1(arr[i]);
-    }
-	REP(i,n)
+	SC1(n);
+	int arr[20][20];
+	FOR(i,1,n)
 	{
-		if(arr[i]%6==0 && arr[i]%5!=0)
+		FOR(j,1,n)
 		{
-			c++;
-			FOR(j,i+1,n-1)
-			{
-				if(arr[i]==arr[j])
-					arr[j]=-1;
-			}
+			scanf("%d",&arr[i][j]);
 		}
 	}
-    PF1(c);
+	int a=solve(arr,n,1,1);
+	if(a==1)
+		printf("YES\n");
+	else
+	{
+		printf("NO\n");
+	}
+	
+	
     return 0;
 }
  

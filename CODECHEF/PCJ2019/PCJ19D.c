@@ -41,29 +41,27 @@ long long maxv(long long a,long long b);
 long long minv(long long a,long long b);
 long long gcd(long long u,long long v);
 
-
 int main()
 {
-    ll n;
-    SC1(n);
-    ll arr[n],c=0;
-    REP(i,n)
-    {
-        SC1(arr[i]);
-    }
-	REP(i,n)
+	ll a,b,c;
+	SC3(a,b,c);
+	ll n,f=0;
+	SC1(n);
+	REP(i,1001)
 	{
-		if(arr[i]%6==0 && arr[i]%5!=0)
+		REP(j,1001)
 		{
-			c++;
-			FOR(j,i+1,n-1)
+			ll ans=n-(a*i+b*j);
+			if(ans%c==0)
 			{
-				if(arr[i]==arr[j])
-					arr[j]=-1;
+				PF3(i,j,ans/c);
+				f=1;
+				break;
 			}
 		}
+		if(f)
+			break;
 	}
-    PF1(c);
     return 0;
 }
  

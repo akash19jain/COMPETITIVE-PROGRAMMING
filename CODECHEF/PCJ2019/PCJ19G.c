@@ -44,26 +44,32 @@ long long gcd(long long u,long long v);
 
 int main()
 {
-    ll n;
-    SC1(n);
-    ll arr[n],c=0;
-    REP(i,n)
-    {
-        SC1(arr[i]);
-    }
+	ll n;
+	SC1(n);
+	ll arr[n];
 	REP(i,n)
+		SC1(arr[i]);
+
+	ll q,x,l,r;
+	SC1(q);
+	while(q--)
 	{
-		if(arr[i]%6==0 && arr[i]%5!=0)
+		ll sum=0;
+		SC3(x,l,r);
+		if(x==1)
 		{
-			c++;
-			FOR(j,i+1,n-1)
-			{
-				if(arr[i]==arr[j])
-					arr[j]=-1;
-			}
+			arr[l-1]=r;
 		}
+		else
+		{
+			l--;
+			r--;
+			FOR(i,l,r)
+				sum+=arr[i];
+			PF1(sum);
+		}
+		
 	}
-    PF1(c);
     return 0;
 }
  
