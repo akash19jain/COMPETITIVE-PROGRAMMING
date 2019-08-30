@@ -1,10 +1,10 @@
 /*  AUTHOR:AKASH JAIN
 *   USERNAME:akash19jain    
-*   DATE:27/08/2019 
+*   DATE:29/08/2019 
 */
-#include<algorithm>
+/*#include<algorithm>
 #include <bits/stdc++.h>
-using namespace std; 
+using namespace std; */
 
 #include<stdio.h>
 #include<math.h>
@@ -42,63 +42,22 @@ int cmp(const void * a,const void * b);
 long long maxv(long long a,long long b);
 long long minv(long long a,long long b);
 long long gcd(long long u,long long v);
-const int N=1e5+5;
-vector <int> v[N];
-ll level[N];
-bool vis[N];
 
-void bfs(int s)
-{
-	queue <int> q;
-	q.push(s);
-	level[s]=0;
-	vis[s]=true;
-	while(!q.empty())
-	{
-		int p=q.front();
-        printf("%d ",p+1);
-		q.pop();
-		REP(i,v[p].size())
-		{
-			int z=v[p][i];
-			if(vis[z]==false)
-			{
-				level[z]=level[p]+1;
-				q.push(v[p][i]);
-				vis[z]=true;
-			} 
-		}
-	}
-}
 int main()
 {
-	ll n;
-	SC1(n);
-	int a,b;
-	REP(i,n-1)
+	ll n,x,ans=0;
+	SC2(n,x);
+	ll arr[n];
+	REP(i,n)
 	{
-		scanf("%d%d",&a,&b);
-		a--;
-		b--;
-		v[a].push_back(b);
-		v[b].push_back(a);
-	}
-	bfs(0);
-	ll x,c=0;
-	SC1(x);
-	x--;
-	if(x==0)
-		printf("1\n");
-	else
-	{
-		REP(i,N)
+		SC1(arr[i]);
+		if(x>0)
 		{
-			if(level[i]==x)
-				c++;
+			x=x-arr[i];
+			ans++;
 		}
-		PF1(c);
 	}
-	
+	PF1(ans);
     return 0;
 }
  

@@ -44,61 +44,41 @@ long long minv(long long a,long long b);
 long long gcd(long long u,long long v);
 const int N=1e5+5;
 vector <int> v[N];
-ll level[N];
 bool vis[N];
 
-void bfs(int s)
+void connected(int s)
 {
-	queue <int> q;
-	q.push(s);
-	level[s]=0;
 	vis[s]=true;
-	while(!q.empty())
+	REP(i,v[s].size())
 	{
-		int p=q.front();
-        printf("%d ",p+1);
-		q.pop();
-		REP(i,v[p].size())
-		{
-			int z=v[p][i];
-			if(vis[z]==false)
-			{
-				level[z]=level[p]+1;
-				q.push(v[p][i]);
-				vis[z]=true;
-			} 
-		}
+		ll z=v[s][i];
+		if(vis[z]==false)
+			connected(v[s][i]);
 	}
 }
 int main()
 {
-	ll n;
-	SC1(n);
+	ll n,m;
+	SC2(n,m);
 	int a,b;
-	REP(i,n-1)
+	REP(i,m)
 	{
 		scanf("%d%d",&a,&b);
-		a--;
-		b--;
+		//a--;
+		//b--;
 		v[a].push_back(b);
 		v[b].push_back(a);
 	}
-	bfs(0);
-	ll x,c=0;
-	SC1(x);
-	x--;
-	if(x==0)
-		printf("1\n");
-	else
+	ll ans=0;
+	FOR(i,1,n)
 	{
-		REP(i,N)
+		if(vis[i]==false)
 		{
-			if(level[i]==x)
-				c++;
+			connected(i);
+			ans++;
 		}
-		PF1(c);
 	}
-	
+	PF1(ans);
     return 0;
 }
  

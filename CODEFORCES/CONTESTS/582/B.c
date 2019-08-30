@@ -1,11 +1,11 @@
-/*  AUTHOR:AKASH JAIN
+*  AUTHOR:AKASH JAIN
 *   USERNAME:akash19jain    
-*   DATE:27/08/2019 
+*   DATE:30/08/2019 
 */
 #include<algorithm>
 #include <bits/stdc++.h>
 using namespace std; 
-
+ 
 #include<stdio.h>
 #include<math.h>
 #include<string.h>
@@ -33,7 +33,7 @@ using namespace std;
 #define DEB(x)          printf("The value of \"%s\" is: %d\n",#x,x)
 #define CASES           ll t;SC1(t);while(t--)
 #define ABS(a)          ((a>0)?a:-(a))
-
+ 
 const int INF = 1<<29;
 typedef long long ll;
 typedef unsigned long long ull;
@@ -42,63 +42,40 @@ int cmp(const void * a,const void * b);
 long long maxv(long long a,long long b);
 long long minv(long long a,long long b);
 long long gcd(long long u,long long v);
-const int N=1e5+5;
-vector <int> v[N];
-ll level[N];
-bool vis[N];
-
-void bfs(int s)
-{
-	queue <int> q;
-	q.push(s);
-	level[s]=0;
-	vis[s]=true;
-	while(!q.empty())
-	{
-		int p=q.front();
-        printf("%d ",p+1);
-		q.pop();
-		REP(i,v[p].size())
-		{
-			int z=v[p][i];
-			if(vis[z]==false)
-			{
-				level[z]=level[p]+1;
-				q.push(v[p][i]);
-				vis[z]=true;
-			} 
-		}
-	}
-}
+ 
 int main()
 {
-	ll n;
-	SC1(n);
-	int a,b;
-	REP(i,n-1)
+	
+	CASES
 	{
-		scanf("%d%d",&a,&b);
-		a--;
-		b--;
-		v[a].push_back(b);
-		v[b].push_back(a);
-	}
-	bfs(0);
-	ll x,c=0;
-	SC1(x);
-	x--;
-	if(x==0)
-		printf("1\n");
-	else
-	{
-		REP(i,N)
+		ll n;
+		SC1(n);
+		ll arr[n];
+		REP(i,n)
 		{
-			if(level[i]==x)
-				c++;
+			SC1(arr[i]);
+		}
+		ll c=0;
+		stack<ll>s;
+		ll arr1[n];
+		for(ll i=n-1;i>=0;i--)
+		{
+			while(!s.empty() && s.top()>=arr[i] )
+				s.pop();
+			if(s.empty())
+			    arr1[i]=-1;
+			 else
+			    arr1[i]=s.top();
+			s.push(arr[i]);
+		}
+		REP(i,n)
+		{
+		    //printf("%lld ",arr1[i]);
+		    if(arr1[i]!=-1)
+		        c++;
 		}
 		PF1(c);
 	}
-	
     return 0;
 }
  

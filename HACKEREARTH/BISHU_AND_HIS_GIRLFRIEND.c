@@ -1,6 +1,6 @@
 /*  AUTHOR:AKASH JAIN
 *   USERNAME:akash19jain    
-*   DATE:27/08/2019 
+*   DATE:29/08/2019 
 */
 #include<algorithm>
 #include <bits/stdc++.h>
@@ -56,7 +56,7 @@ void bfs(int s)
 	while(!q.empty())
 	{
 		int p=q.front();
-        printf("%d ",p+1);
+        //printf("%d ",p+1);
 		q.pop();
 		REP(i,v[p].size())
 		{
@@ -78,27 +78,30 @@ int main()
 	REP(i,n-1)
 	{
 		scanf("%d%d",&a,&b);
-		a--;
-		b--;
+		//a--;
+		//b--;
 		v[a].push_back(b);
 		v[b].push_back(a);
 	}
-	bfs(0);
-	ll x,c=0;
-	SC1(x);
-	x--;
-	if(x==0)
-		printf("1\n");
-	else
+	bfs(1);
+	ll q,min=100000,pos=-1;
+	SC1(q);
+	REP(i,q)
 	{
-		REP(i,N)
+		ll x;
+		SC1(x);
+		if(level[x]<min)
 		{
-			if(level[i]==x)
-				c++;
+			min=level[x];
+			pos=x;
 		}
-		PF1(c);
+		if(level[x]==min && x<pos)
+		{
+			min=level[x];
+			pos=x;
+		}
 	}
-	
+	PF1(pos);
     return 0;
 }
  
