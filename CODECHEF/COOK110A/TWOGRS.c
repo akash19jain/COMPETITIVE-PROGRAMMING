@@ -46,49 +46,32 @@ long long gcd(long long u,long long v);
     
 int main()
 {
-	ll n;
-	SC1(n);
-	ll arr[n];
-	REP(i,n)
-		SC1(arr[i]);
-	ll dp[n+1][n+1];
-	MEM(dp,-1);
-	REP(i,n)
-		dp[i][i]=arr[i];
-	//ll z=n*(n+1)/2;
-	//ll calc[z],a=0;
-	//MEM(calc,-1);
-	REP(i,n)
+	CASES
 	{
-		FOR(j,i+1,n)
+		ll a,b,c;
+		SC3(a,b,c);
+		ll sum=a+2*b+3*c;
+		if(sum%2==1)
 		{
-			dp[i][j]=gcd(dp[i][j-1],arr[j]);
+			printf("NO\n");
+			continue;
 		}
-	}
-	REP(i,n)
-	{
-		FOR(j,0,n)
+		if(a>0 && b>0 && c>0)
 		{
-			printf("%lld ",dp[i][j]);
+			printf("YES\n");
+			continue;
 		}
-		printf("\n");
-	}
-	ll q;
-	SC1(q);
-	ll k;
-	while(q--)
-	{
-		ll ans=0;
-		SC1(k);
-		REP(i,n)
+		if(a==0 && c==0 && b%2==1)
 		{
-			FOR(j,i+1,n)
-			{
-				if(k%dp[i][j]==0)
-					ans++;
-			}
+			printf("NO\n");
+			continue;
 		}
-		PF1(ans);
+		if((a==0 && b==1)||(a==1 && b==0))
+		{
+			printf("NO\n");
+			continue;
+		}
+		printf("YES\n");
 	}
 	
     return 0;

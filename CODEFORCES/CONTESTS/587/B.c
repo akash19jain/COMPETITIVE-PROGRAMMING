@@ -1,11 +1,11 @@
 /*  AUTHOR:AKASH JAIN
 *   USERNAME:akash19jain    
-*   DATE:23/09/2019 
+*   DATE:22/09/2019 
 */
 /*#include<algorithm>
 #include <bits/stdc++.h>
 using namespace std;*/
-
+ 
 #include<stdio.h>
 #include<math.h>
 #include<string.h>
@@ -30,10 +30,10 @@ using namespace std;*/
 #define MAX             10000000005
 #define MIN             -10000000005
 #define PI              3.1415926535897932384626433832795
-#define DEB(x)          printf("The value of \"%s\" is: %d\n",#x,x)
+#define DEB(x)          printf("The value of \"%s\" is: %lld\n",#x,x)
 #define CASES           ll t;SC1(t);while(t--)
 #define ABS(a)          ((a>0)?a:-(a))
-
+ 
 const int INF = 1<<29;
 typedef long long ll;
 typedef unsigned long long ull;
@@ -42,65 +42,39 @@ int cmp(const void * a,const void * b);
 long long maxv(long long a,long long b);
 long long minv(long long a,long long b);
 long long gcd(long long u,long long v);
-
-    
-int main()
+typedef struct
 {
-	ll n;
-	SC1(n);
-	ll arr[n];
-	REP(i,n)
-		SC1(arr[i]);
-	ll dp[n+1][n+1];
-	MEM(dp,-1);
-	REP(i,n)
-		dp[i][i]=arr[i];
-	//ll z=n*(n+1)/2;
-	//ll calc[z],a=0;
-	//MEM(calc,-1);
-	REP(i,n)
-	{
-		FOR(j,i+1,n)
-		{
-			dp[i][j]=gcd(dp[i][j-1],arr[j]);
-		}
-	}
-	REP(i,n)
-	{
-		FOR(j,0,n)
-		{
-			printf("%lld ",dp[i][j]);
-		}
-		printf("\n");
-	}
-	ll q;
-	SC1(q);
-	ll k;
-	while(q--)
-	{
-		ll ans=0;
-		SC1(k);
-		REP(i,n)
-		{
-			FOR(j,i+1,n)
-			{
-				if(k%dp[i][j]==0)
-					ans++;
-			}
-		}
-		PF1(ans);
-	}
-	
+    ll a,b;
+}arr;
+arr list[1005];
+int main()
+{   
+    ll n;
+    SC1(n);
+    REP(i,n)
+    {
+        SC1(list[i].a);
+        list[i].b=i+1;
+    }
+    qsort(list,n,sizeof(arr),cmp);
+    ll ans=0;
+    REP(i,n)
+    {
+        ans+=(list[i].a*i)+1;
+    }
+    PF1(ans);
+    REP(i,n)
+        printf("%lld ",list[i].b);
     return 0;
 }
  
  
 //qsort(arr,n,sizeof(arr[0]),cmp);
-int cmp (const void * a, const void * b)
+int cmp(const void *a, const void *b)
 {
-    if( *(ll*)a - *(ll*)b < 0 ) return 1;
-    if( *(ll*)a - *(ll*)b > 0 ) return -1;
-        return 0;
+    arr *ia=(arr *)a;
+    arr *ib=(arr *)b;
+    return(ib->a - ia->a);
 }
 long long maxv(long long a,long long b)
 {
@@ -117,3 +91,4 @@ long long gcd(long long u,long long v)
     if (v == 0) return u; 
        return gcd(v, u%v);
 }
+

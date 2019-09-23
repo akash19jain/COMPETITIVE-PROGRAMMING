@@ -1,11 +1,11 @@
 /*  AUTHOR:AKASH JAIN
 *   USERNAME:akash19jain    
-*   DATE:23/09/2019 
+*   DATE:22/09/2019 
 */
 /*#include<algorithm>
 #include <bits/stdc++.h>
 using namespace std;*/
-
+ 
 #include<stdio.h>
 #include<math.h>
 #include<string.h>
@@ -30,10 +30,10 @@ using namespace std;*/
 #define MAX             10000000005
 #define MIN             -10000000005
 #define PI              3.1415926535897932384626433832795
-#define DEB(x)          printf("The value of \"%s\" is: %d\n",#x,x)
+#define DEB(x)          printf("The value of \"%s\" is: %lld\n",#x,x)
 #define CASES           ll t;SC1(t);while(t--)
 #define ABS(a)          ((a>0)?a:-(a))
-
+ 
 const int INF = 1<<29;
 typedef long long ll;
 typedef unsigned long long ull;
@@ -43,54 +43,31 @@ long long maxv(long long a,long long b);
 long long minv(long long a,long long b);
 long long gcd(long long u,long long v);
 
-    
 int main()
-{
-	ll n;
-	SC1(n);
-	ll arr[n];
-	REP(i,n)
-		SC1(arr[i]);
-	ll dp[n+1][n+1];
-	MEM(dp,-1);
-	REP(i,n)
-		dp[i][i]=arr[i];
-	//ll z=n*(n+1)/2;
-	//ll calc[z],a=0;
-	//MEM(calc,-1);
-	REP(i,n)
-	{
-		FOR(j,i+1,n)
-		{
-			dp[i][j]=gcd(dp[i][j-1],arr[j]);
-		}
-	}
-	REP(i,n)
-	{
-		FOR(j,0,n)
-		{
-			printf("%lld ",dp[i][j]);
-		}
-		printf("\n");
-	}
-	ll q;
-	SC1(q);
-	ll k;
-	while(q--)
-	{
-		ll ans=0;
-		SC1(k);
-		REP(i,n)
-		{
-			FOR(j,i+1,n)
-			{
-				if(k%dp[i][j]==0)
-					ans++;
-			}
-		}
-		PF1(ans);
-	}
-	
+{   
+    CASES
+    {
+        ll a,b;
+        SC2(a,b);
+        ll sum=a+b;
+        ll ans=0;
+        while(sum>0)
+        {
+            int r=sum%10;
+            sum=sum/10;
+            if(r==0) ans+=6;
+            if(r==1) ans+=2;
+            if(r==2) ans+=5;
+            if(r==3) ans+=5;
+            if(r==4) ans+=4;
+            if(r==5) ans+=5;
+            if(r==6) ans+=6;
+            if(r==7) ans+=3;
+            if(r==8) ans+=7;
+            if(r==9) ans+=6;
+        }
+        PF1(ans);
+    }
     return 0;
 }
  
@@ -98,8 +75,8 @@ int main()
 //qsort(arr,n,sizeof(arr[0]),cmp);
 int cmp (const void * a, const void * b)
 {
-    if( *(ll*)a - *(ll*)b < 0 ) return 1;
-    if( *(ll*)a - *(ll*)b > 0 ) return -1;
+    if( *(ll*)a - *(ll*)b < 0 ) return -1;
+    if( *(ll*)a - *(ll*)b > 0 ) return 1;
         return 0;
 }
 long long maxv(long long a,long long b)
@@ -117,3 +94,4 @@ long long gcd(long long u,long long v)
     if (v == 0) return u; 
        return gcd(v, u%v);
 }
+
