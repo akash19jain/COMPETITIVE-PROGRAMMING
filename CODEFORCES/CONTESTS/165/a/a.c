@@ -1,6 +1,6 @@
 /*  AUTHOR:AKASH JAIN
 *   USERNAME:akash19jain    
-*   DATE:27/10/2019 
+*   TIME: 30-10-2019 13:29:49
 */
 // #include<algorithm>
 // #include <bits/stdc++.h>
@@ -56,50 +56,30 @@ ll CEIL(ll x,ll y);
 ll FLOOR(ll x,ll y);
 int main()
 {
-    CASES
+    ll n;
+    SC1(n);
+    ll arr[n][2];
+    REP(i,n)
+    	SC2(arr[i][0],arr[i][1]);
+    ll a=0,b=0,c=0,d=0,ans=0;
+    REP(i,n)
     {
-        ll n,k,p;
-        SC3(n,k,p);
-        ll arr[n];
-        ll max=MIN,min=MAX;
-        REP(i,n)
-        {
-            SC1(arr[i]);
-            if(arr[i]>max)
-                max=arr[i];
-            if(arr[i]<min)
-                min=arr[i];
-        }   
-        if(k%2==1)
-        {
-            if(p==0)
-                PF1(max);
-            else
-                PF1(min);
-        }  
-        else
-        {
-            ll ans=0;
-            if(p==0)
-            {
-                ans=maxv(arr[1],arr[n-2]);
-                FOR(j,1,n-2)
-                {
-                    ans=maxv(ans,minv(arr[j-1],arr[j+1]));
-                }
-            }
-            else
-            {
-                ans=minv(arr[1],arr[n-2]);
-                FOR(j,1,n-2)
-                {
-                    ans=minv(ans,maxv(arr[j-1],arr[j+1]));
-                }
-            }
-            PF1(ans);
-        }   
+    	a=0,b=0,c=0,d=0;
+    	REP(j,n)
+    	{
+    		if(arr[j][0]>arr[i][0] && arr[i][1]==arr[j][1])
+    			a++;
+    		if(arr[j][0]<arr[i][0] && arr[i][1]==arr[j][1])
+    			b++;
+    		if(arr[j][1]>arr[i][1]  && arr[i][0]==arr[j][0])
+    			c++;
+    		if(arr[j][1]<arr[i][1]  && arr[i][0]==arr[j][0])
+    			d++;
+    	}
+    	if(a>0 && b>0 && c>0 && d>0)
+    		ans++;
     }
-
+    PF1(ans);
     return 0;
 }
  

@@ -1,3 +1,4 @@
+//100 POINTS OUT OF 300
 /*  AUTHOR:AKASH JAIN
 *   USERNAME:akash19jain    
 *   DATE:27/10/2019 
@@ -56,49 +57,36 @@ ll CEIL(ll x,ll y);
 ll FLOOR(ll x,ll y);
 int main()
 {
-    CASES
+    ll n,d;
+    SC2(n,d);
+    char str[n+1],a=0;
+    REP(i,n)
     {
-        ll n,k,p;
-        SC3(n,k,p);
-        ll arr[n];
-        ll max=MIN,min=MAX;
-        REP(i,n)
-        {
-            SC1(arr[i]);
-            if(arr[i]>max)
-                max=arr[i];
-            if(arr[i]<min)
-                min=arr[i];
-        }   
-        if(k%2==1)
-        {
-            if(p==0)
-                PF1(max);
-            else
-                PF1(min);
-        }  
-        else
-        {
-            ll ans=0;
-            if(p==0)
-            {
-                ans=maxv(arr[1],arr[n-2]);
-                FOR(j,1,n-2)
-                {
-                    ans=maxv(ans,minv(arr[j-1],arr[j+1]));
-                }
-            }
-            else
-            {
-                ans=minv(arr[1],arr[n-2]);
-                FOR(j,1,n-2)
-                {
-                    ans=minv(ans,maxv(arr[j-1],arr[j+1]));
-                }
-            }
-            PF1(ans);
-        }   
+        str[i]=(char)('A'+i);
     }
+    //char ans;
+    //REP(i,n)
+        REP(j,n-1)
+        {
+            printf("? %c %c\n",str[j],str[j+1]);
+            fflush(stdout);
+            //DEB(j);
+            
+            char ans;
+            scanf("\n%c",&ans);
+            //printf("D=%c\n",ans);
+            if(ans=='>')
+            {
+                char z=str[j];
+                str[j]=str[j+1];
+                str[j+1]=z;
+            }
+            //printf("%c",ans);
+            
+            
+        }
+    printf("! %s\n",str);
+    fflush(stdout);
 
     return 0;
 }

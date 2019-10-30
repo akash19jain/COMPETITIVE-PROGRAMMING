@@ -56,49 +56,12 @@ ll CEIL(ll x,ll y);
 ll FLOOR(ll x,ll y);
 int main()
 {
-    CASES
-    {
-        ll n,k,p;
-        SC3(n,k,p);
-        ll arr[n];
-        ll max=MIN,min=MAX;
-        REP(i,n)
-        {
-            SC1(arr[i]);
-            if(arr[i]>max)
-                max=arr[i];
-            if(arr[i]<min)
-                min=arr[i];
-        }   
-        if(k%2==1)
-        {
-            if(p==0)
-                PF1(max);
-            else
-                PF1(min);
-        }  
-        else
-        {
-            ll ans=0;
-            if(p==0)
-            {
-                ans=maxv(arr[1],arr[n-2]);
-                FOR(j,1,n-2)
-                {
-                    ans=maxv(ans,minv(arr[j-1],arr[j+1]));
-                }
-            }
-            else
-            {
-                ans=minv(arr[1],arr[n-2]);
-                FOR(j,1,n-2)
-                {
-                    ans=minv(ans,maxv(arr[j-1],arr[j+1]));
-                }
-            }
-            PF1(ans);
-        }   
-    }
+    ll a,b,c;
+    SC3(a,b,c);
+    char str[105];
+    SCS(str);
+    printf("%lld ",a+b+c);
+    printf("%s\n",str);
 
     return 0;
 }

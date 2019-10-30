@@ -1,6 +1,6 @@
 /*  AUTHOR:AKASH JAIN
 *   USERNAME:akash19jain    
-*   DATE:27/10/2019 
+*   TIME: 30-10-2019 13:57:48
 */
 // #include<algorithm>
 // #include <bits/stdc++.h>
@@ -56,50 +56,25 @@ ll CEIL(ll x,ll y);
 ll FLOOR(ll x,ll y);
 int main()
 {
-    CASES
+    
+    ll k;
+    SC1(k);
+    char str[1000005];
+    SCS(str);
+    ll len=SZ(str);
+    ll dp[len+1];
+    MEM(dp,0);
+    dp[0]=1;
+    ll ans=0,c=0;
+    REP(i,len)
     {
-        ll n,k,p;
-        SC3(n,k,p);
-        ll arr[n];
-        ll max=MIN,min=MAX;
-        REP(i,n)
-        {
-            SC1(arr[i]);
-            if(arr[i]>max)
-                max=arr[i];
-            if(arr[i]<min)
-                min=arr[i];
-        }   
-        if(k%2==1)
-        {
-            if(p==0)
-                PF1(max);
-            else
-                PF1(min);
-        }  
-        else
-        {
-            ll ans=0;
-            if(p==0)
-            {
-                ans=maxv(arr[1],arr[n-2]);
-                FOR(j,1,n-2)
-                {
-                    ans=maxv(ans,minv(arr[j-1],arr[j+1]));
-                }
-            }
-            else
-            {
-                ans=minv(arr[1],arr[n-2]);
-                FOR(j,1,n-2)
-                {
-                    ans=minv(ans,maxv(arr[j-1],arr[j+1]));
-                }
-            }
-            PF1(ans);
-        }   
+        if(str[i]=='1')
+            c++;
+        if(c>=k)
+            ans+=dp[c-k];
+        dp[c]++;
     }
-
+    PF1(ans);
     return 0;
 }
  

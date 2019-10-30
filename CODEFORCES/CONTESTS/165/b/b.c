@@ -1,6 +1,6 @@
 /*  AUTHOR:AKASH JAIN
 *   USERNAME:akash19jain    
-*   DATE:27/10/2019 
+*   TIME: 30-10-2019 13:43:09
 */
 // #include<algorithm>
 // #include <bits/stdc++.h>
@@ -54,51 +54,35 @@ bool isvowel(char x);
 ll chartoint(char ch);
 ll CEIL(ll x,ll y);
 ll FLOOR(ll x,ll y);
+
+ll check(ll v,ll k)
+{
+    ll sum=0;
+    while(v)
+    {
+        sum+=v;
+        v=v/k;
+    }
+    return sum;
+}
 int main()
 {
-    CASES
+    ll n,k;
+    SC2(n,k);
+    ll l=0,r=1e9,res=0,mid=0;
+    while(l<=r)
     {
-        ll n,k,p;
-        SC3(n,k,p);
-        ll arr[n];
-        ll max=MIN,min=MAX;
-        REP(i,n)
+        mid=(l+r)/2;
+        if(check(mid,k)>=n)
         {
-            SC1(arr[i]);
-            if(arr[i]>max)
-                max=arr[i];
-            if(arr[i]<min)
-                min=arr[i];
-        }   
-        if(k%2==1)
-        {
-            if(p==0)
-                PF1(max);
-            else
-                PF1(min);
-        }  
+            res=mid;
+            r=mid-1;
+        }
         else
-        {
-            ll ans=0;
-            if(p==0)
-            {
-                ans=maxv(arr[1],arr[n-2]);
-                FOR(j,1,n-2)
-                {
-                    ans=maxv(ans,minv(arr[j-1],arr[j+1]));
-                }
-            }
-            else
-            {
-                ans=minv(arr[1],arr[n-2]);
-                FOR(j,1,n-2)
-                {
-                    ans=minv(ans,maxv(arr[j-1],arr[j+1]));
-                }
-            }
-            PF1(ans);
-        }   
+            l=mid+1;
+
     }
+    PF1(res);
 
     return 0;
 }

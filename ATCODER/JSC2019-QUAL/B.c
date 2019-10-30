@@ -56,49 +56,36 @@ ll CEIL(ll x,ll y);
 ll FLOOR(ll x,ll y);
 int main()
 {
-    CASES
-    {
-        ll n,k,p;
-        SC3(n,k,p);
+        ll n,k;
+        SC2(n,k);
         ll arr[n];
-        ll max=MIN,min=MAX;
+        SCA(arr,n);
+        ll ans=0;
         REP(i,n)
         {
-            SC1(arr[i]);
-            if(arr[i]>max)
-                max=arr[i];
-            if(arr[i]<min)
-                min=arr[i];
-        }   
-        if(k%2==1)
-        {
-            if(p==0)
-                PF1(max);
-            else
-                PF1(min);
-        }  
-        else
-        {
-            ll ans=0;
-            if(p==0)
+            ll a=0,b=0;
+            FORD(j,i-1,0)
             {
-                ans=maxv(arr[1],arr[n-2]);
-                FOR(j,1,n-2)
-                {
-                    ans=maxv(ans,minv(arr[j-1],arr[j+1]));
-                }
+                if(arr[i]>arr[j])
+                    b++;
             }
-            else
+            FOR(j,i+1,n-1)
             {
-                ans=minv(arr[1],arr[n-2]);
-                FOR(j,1,n-2)
-                {
-                    ans=minv(ans,maxv(arr[j-1],arr[j+1]));
-                }
+                if(arr[i]>arr[j])
+                    a++;
             }
-            PF1(ans);
-        }   
-    }
+            ll z=k*(k+1)/2;
+            z=z%MOD;
+            z=z*a;
+            z=z%MOD;
+            ll z1=k*(k-1)/2;
+            z1=z1%MOD;
+            z1=z1*b;
+            z1=z1%MOD;
+            ans+=z+z1;
+            ans=ans%MOD;
+        }
+        PF1(ans);
 
     return 0;
 }
