@@ -1,0 +1,11 @@
+YES
+PR
+YES
+RR
+NO
+YES
+PPR
+NO
+NO
+YES
+R
