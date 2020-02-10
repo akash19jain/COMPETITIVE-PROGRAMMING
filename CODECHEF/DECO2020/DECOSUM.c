@@ -67,6 +67,7 @@ int main()
     {
         ll n;
         SC1(n);
+        
         ll arr[n],sum=0,min=MAX;
         REP(i,n)
         {
