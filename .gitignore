@@ -28,3 +28,6 @@ someOtherfoler/
 *.zip
 
 compile.c
+err.txt
+inp.txt
+out.txt
