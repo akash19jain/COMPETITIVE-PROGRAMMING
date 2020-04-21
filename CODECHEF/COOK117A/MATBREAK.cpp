@@ -1,7 +1,7 @@
 /*  AUTHOR: AKASH JAIN
 *   EMAIL:  akash19jain@gmail.com
 *   ID:     akash19jain  
-*   DATE:   23-12-2019 21:46:38
+*   DATE:   20-04-2020 22:28:42
 */
 
 
@@ -41,6 +41,8 @@
 #define SWAP(a,b)       ll z=a;a=b;b=z
 #define SWAPC(a,b)      char z=a;a=b;b=z
 #define FLSH            fflush(stdout)
+#define faster          ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define all(x) (x).begin(), (x).end()
 typedef long long ll;
 typedef unsigned long long ull;
 const ll INF = 1<<29;
@@ -60,50 +62,43 @@ ll chartoint(char ch);
 ll CEIL(ll x,ll y);
 ll FLOOR(ll x,ll y);
 
-
+ll binpow(ll a,ll b,ll m)
+{
+    ll res=1;
+    a=a%m;
+    while(b>0)
+    {
+        if(b&1)
+            res=res*a%m;
+        a=a*a%m;
+        b>>=1;
+    }
+    return res;
+}
 int main()
 {
-    ll n;
-    SC1(n);
-    REP(i,n)
+    #ifndef ONLINE_JUDGE 
+        freopen("F:\\COMPETITIVE-PROGRAMMING\\inp.txt", "r", stdin); 
+        freopen("F:\\COMPETITIVE-PROGRAMMING\\out.txt", "w", stdout);
+    #endif 
+
+    CASES
     {
-        REP(j,n)
-        {
-            if(i<n/2)
-            {
-                if(j<n/2)
-                {
-                    if(j==0)
-                        printf("*");
-                    else
-                        printf(" ");
-                }
-                else if(j==n/2)
-                    printf("*");
-                else
-                {
-                    if(i==0)
-                        printf("*");
-                }
-            }
-            else if(i==n/2)
-                printf("*");
-            else
-            {
-                if(j==n/2 || j==n-1)
-                    printf("*");
-                else if(i==n-1)
-                {
-                    if(j<=n/2 || j==n-1)
-                        printf("*");
-                    else
-                        printf(" ");
-                }
-                else
-                    printf(" ");
-            }
-        }
-        printf("\n");
+    	ll n,a;
+    	SC2(n,a);
+    	ll sum=0;
+    	ll c=1;
+    	ll value=a;
+    	REP(i,n)
+    	{
+    		ll s1=binpow(value,c,MOD);
+    		sum+=s1;
+    		sum=sum%MOD;
+    		c+=2;
+    		value*=s1;
+    		value=value%MOD;
+    	}
+    	PF1(sum);
     }
     return 0;
 }

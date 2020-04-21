@@ -1,7 +1,7 @@
 /*  AUTHOR: AKASH JAIN
 *   EMAIL:  akash19jain@gmail.com
 *   ID:     akash19jain  
-*   DATE:   23-12-2019 21:17:42
+*   DATE:   01-02-2020 23:52:58
 */
 
 
@@ -63,29 +63,13 @@ ll FLOOR(ll x,ll y);
 
 int main()
 {
-    ll n,d;
-    SC2(n,d);
-    ll arr[n];
-    SCA(arr,n);
+    ll n;
+    SC1(n);
     ll ans=0;
-    REP(i,n)
-    {
-        if(arr[i]==0)
-        {
-            arr[i]=1;
-            ans++;
-            //DEB(i);
-        }
-        if(arr[i]==2)
-            continue;
-        ll c=1;
-        while(c<=d-1 && arr[i+c]!=1)
-        {
-            arr[i+c]=2;
-            c++;
-        }
-    }
+    for(ll i=5;n/i>=1;i=i*5)
+        ans+=n/i;
     PF1(ans);
+
     return 0;
 }
  

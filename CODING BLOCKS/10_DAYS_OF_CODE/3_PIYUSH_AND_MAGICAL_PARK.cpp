@@ -1,13 +1,13 @@
 /*  AUTHOR: AKASH JAIN
 *   EMAIL:  akash19jain@gmail.com
 *   ID:     akash19jain  
-*   DATE:   20-02-2020 13:31:45
+*   DATE:   19-04-2020 15:18:19
 */
 
 
-// #include<algorithm>
-// #include <bits/stdc++.h>
-// using namespace std;
+#include<algorithm>
+#include <bits/stdc++.h>
+using namespace std;
  
 #include<stdio.h>
 #include<math.h>
@@ -41,6 +41,8 @@
 #define SWAP(a,b)       ll z=a;a=b;b=z
 #define SWAPC(a,b)      char z=a;a=b;b=z
 #define FLSH            fflush(stdout)
+#define faster          ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define all(x) (x).begin(), (x).end()
 typedef long long ll;
 typedef unsigned long long ull;
 const ll INF = 1<<29;
@@ -63,24 +65,58 @@ ll FLOOR(ll x,ll y);
 
 int main()
 {
-    ll m,n;
-    SC2(m,n);
-    ll arr[n];
-    SCA(arr,n);
-    ll types=0;
-    ll ans[n],a=0;
-    FORD(i,n-1,0)
+    #ifndef ONLINE_JUDGE 
+        freopen("F:\\COMPETITIVE-PROGRAMMING\\inp.txt", "r", stdin); 
+        freopen("F:\\COMPETITIVE-PROGRAMMING\\out.txt", "w", stdout);
+    #endif 
+
+    ll n,m,k,s;
+    SC2(n,m);
+    SC2(k,s);
+    scanf("\n");
+    char str[n][m+5];
+    REP(i,n)
     {
-        if(arr[i]<=m)
-        {
-            types++;
-            m-=arr[i];
-            ans[a]=i;
-            a++;
-        }
+    	REP(j,m)
+    	{
+    		cin>>str[i][j];
+    	}
     }
-    PF1(a);
-    PFA(ans,a);
+    
+    bool success=true;
+
+    REP(i,n)
+    {
+    	REP(j,m)
+    	{
+    		if(s<k)
+    		{
+    			success=false;
+    			break;
+    		}
+    		if(str[i][j]=='*')
+    			s+=5;
+    		else if(str[i][j]=='.')
+    			s-=2;
+    		else
+    			break;
+
+    		if(j!=m-1)
+    			s--;
+    	}
+    	if(s<k)
+		{
+			success=false;
+			break;
+		}
+    }
+    if(success)
+    {
+    	PFS("Yes");
+    	PF1(s);
+    }
+    else
+    	PFS("No");
     return 0;
 }
  

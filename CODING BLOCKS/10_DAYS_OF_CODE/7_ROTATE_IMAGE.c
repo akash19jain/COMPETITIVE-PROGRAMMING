@@ -1,7 +1,7 @@
 /*  AUTHOR: AKASH JAIN
 *   EMAIL:  akash19jain@gmail.com
 *   ID:     akash19jain  
-*   DATE:   23-12-2019 23:04:25
+*   DATE:   19-04-2020 17:52:10
 */
 
 
@@ -41,6 +41,8 @@
 #define SWAP(a,b)       ll z=a;a=b;b=z
 #define SWAPC(a,b)      char z=a;a=b;b=z
 #define FLSH            fflush(stdout)
+#define faster          ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define all(x) (x).begin(), (x).end()
 typedef long long ll;
 typedef unsigned long long ull;
 const ll INF = 1<<29;
@@ -63,48 +65,28 @@ ll FLOOR(ll x,ll y);
 
 int main()
 {
-    ll n,m;
-    SC2(n,m);
-    char arr[n+5][m+5];
+    #ifndef ONLINE_JUDGE 
+        freopen("F:\\COMPETITIVE-PROGRAMMING\\inp.txt", "r", stdin); 
+        freopen("F:\\COMPETITIVE-PROGRAMMING\\out.txt", "w", stdout);
+    #endif 
+
+    ll n;
+    SC1(n);
+    ll arr[n][n];
     REP(i,n)
     {
-    	SCS(arr[i]);
+    	REP(j,n)
+    	{
+    		SC1(arr[i][j]);
+    	}
     }
-    ll count[m],ans=0;
-    MEM(count,0);
-    REP(i,n)
+
+    FORD(i,n-1,0)
     {
-    	REP(j,m)
-    	{
-    		if(arr[i][j]=='.')
-    			count[j]++;
-    		else
-    			count[j]=0;
-    	}
-    	REP(j,m)
-    	{
-    		ll h=count[j];
-    		ll w=1;
-    		if(h>0)
-    		{
-    			FOR(k,j+1,m-1)
-    			{
-    				if(count[k]<h)
-    					break;
-    				w++;
-    			}
-    			FORD(k,j-1,1)
-    			{
-    				if(count[k]<h)
-    					break;
-    				w++;
-    			}
-    		}
-    		ll per=w*2+h*2;
-    		ans=maxv(ans,per);
-    	}
+    	REP(j,n)
+    		printf("%lld ",arr[j][i]);
+    	PFN;
     }
-    PF1(ans-1);
     return 0;
 }
  

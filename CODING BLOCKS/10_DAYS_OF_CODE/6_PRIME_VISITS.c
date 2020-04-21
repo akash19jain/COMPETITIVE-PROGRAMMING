@@ -1,7 +1,7 @@
 /*  AUTHOR: AKASH JAIN
 *   EMAIL:  akash19jain@gmail.com
 *   ID:     akash19jain  
-*   DATE:   02-01-2020 16:11:29
+*   DATE:   19-04-2020 16:15:24
 */
 
 
@@ -41,6 +41,8 @@
 #define SWAP(a,b)       ll z=a;a=b;b=z
 #define SWAPC(a,b)      char z=a;a=b;b=z
 #define FLSH            fflush(stdout)
+#define faster          ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define all(x) (x).begin(), (x).end()
 typedef long long ll;
 typedef unsigned long long ull;
 const ll INF = 1<<29;
@@ -60,53 +62,44 @@ ll chartoint(char ch);
 ll CEIL(ll x,ll y);
 ll FLOOR(ll x,ll y);
 
+bool prime[1000005]; 
+void SieveOfEratosthenes(ll n) 
+{ 
+    memset(prime, true, sizeof(prime)); 
+    for (ll p=2; p*p<=n; p++) 
+    { 
+        if (prime[p] == true) 
+        { 
+            for (ll i=p*p; i<=n; i += p) 
+                prime[i] = false; 
+        } 
+    } 
+}
 
 int main()
 {
-    ll n,m;
-    SC2(n,m);
-    char arr[n+5][m+5];
-    ll count[m];
-    MEM(count,0);
-    ll max=0;
-    REP(i,n)
+    SieveOfEratosthenes(1000004);
+    ll sum[1000015];
+    sum[0]=0;
+    prime[1]=false;
+    prime[0]=false;
+    prime[2]=true;
+    FOR(i,1,1000004)
     {
-        SCS(arr[i]);
-        //printf("%s\n",arr[i]);
-        REP(j,m)
-        {
-            if(arr[i][j]=='.')
-                count[j]++;
-            else 
-                count[j]=0;
-
-        }
-        //PFA(count,m);
-        REP(j,m)
-        {
-            ll h=count[j];
-            ll w=1;
-            if(h>0)
-            {
-                FOR(k,j+1,m-1)
-                {
-                    if(count[k]<h)
-                        break;
-                    w++;
-                }
-                FORD(k,j-1,1)
-                {
-                    if(count[k]<h)
-                        break;
-                    w++;
-                }
-            }
-            ll z=w*2+h*2;
-            //DEB(z);
-            max=maxv(max,z);
-        }
+        sum[i]=sum[i-1];
+        if(prime[i])
+            sum[i]+=1;
     }
-    PF1(max-1);
+    
+    CASES
+    {
+    	ll a,b;
+    	SC2(a,b);
+    	if(a==0)
+    	    a++;
+    	ll ans=sum[b]-sum[a-1];
+    	PF1(ans);
+    }
     return 0;
 }
  

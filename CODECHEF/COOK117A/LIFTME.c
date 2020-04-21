@@ -1,7 +1,7 @@
 /*  AUTHOR: AKASH JAIN
 *   EMAIL:  akash19jain@gmail.com
 *   ID:     akash19jain  
-*   DATE:   23-12-2019 21:41:22
+*   DATE:   20-04-2020 22:16:56
 */
 
 
@@ -41,6 +41,8 @@
 #define SWAP(a,b)       ll z=a;a=b;b=z
 #define SWAPC(a,b)      char z=a;a=b;b=z
 #define FLSH            fflush(stdout)
+#define faster          ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define all(x) (x).begin(), (x).end()
 typedef long long ll;
 typedef unsigned long long ull;
 const ll INF = 1<<29;
@@ -63,18 +65,26 @@ ll FLOOR(ll x,ll y);
 
 int main()
 {
-    ll n;
-    SC1(n);
-    ll space=n;
-    REP(i,n+1)
+    #ifndef ONLINE_JUDGE 
+        freopen("F:\\COMPETITIVE-PROGRAMMING\\inp.txt", "r", stdin); 
+        freopen("F:\\COMPETITIVE-PROGRAMMING\\out.txt", "w", stdout);
+    #endif 
+
+    CASES
     {
-    	REP(j,space)
-    		printf(" ");
-    	FORD(j,i,0)
-    		printf("%lld",j);
-    	FOR(j,1,i)
-    		printf("%lld",j);
-    	PFN;
+    	ll n,q;
+    	SC2(n,q);
+    	ll ans=0;
+    	ll p=0;
+    	while(q--)
+    	{
+    		ll a,b;
+    		SC2(a,b);
+    		ans+=ABS(a-p);
+    		ans+=ABS(b-a);
+    		p=b;
+    	}
+    	PF1(ans);
     }
     return 0;
 }

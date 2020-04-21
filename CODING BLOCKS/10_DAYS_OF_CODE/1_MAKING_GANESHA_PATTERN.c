@@ -1,7 +1,7 @@
 /*  AUTHOR: AKASH JAIN
 *   EMAIL:  akash19jain@gmail.com
 *   ID:     akash19jain  
-*   DATE:   23-12-2019 21:14:25
+*   DATE:   19-04-2020 14:19:09
 */
 
 
@@ -41,6 +41,8 @@
 #define SWAP(a,b)       ll z=a;a=b;b=z
 #define SWAPC(a,b)      char z=a;a=b;b=z
 #define FLSH            fflush(stdout)
+#define faster          ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define all(x) (x).begin(), (x).end()
 typedef long long ll;
 typedef unsigned long long ull;
 const ll INF = 1<<29;
@@ -63,13 +65,58 @@ ll FLOOR(ll x,ll y);
 
 int main()
 {
-    char str[1005];
-    ll ans=0;
-    SCS(str);
-    ll len=SZ(str);
-    REP(i,len)
-    	ans=ans^str[i];
-    printf("%c\n",ans);
+    #ifndef ONLINE_JUDGE 
+        freopen("F:\\COMPETITIVE-PROGRAMMING\\inp.txt", "r", stdin); 
+        freopen("F:\\COMPETITIVE-PROGRAMMING\\out.txt", "w", stdout);
+    #endif 
+
+    ll n;
+    SC1(n);
+
+    printf("*");
+    FOR(i,1,(n-3)/2)
+    	printf(" ");
+    FOR(i,1,(n+1)/2)
+    	printf("*");
+
+    PFN;
+
+    FOR(i,1,(n-3)/2)
+    {
+    	printf("*");
+    	REP(j,(n-3)/2)
+    		printf(" ");
+    	printf("*");
+    	PFN;
+    }
+
+    FOR(i,1,n)
+    	printf("*");
+    PFN;
+
+    FOR(i,1,(n-3)/2)
+    {
+    	FOR(i,1,(n-3)/2+1)
+    		printf(" ");
+
+    	printf("*");
+
+    	FOR(i,1,(n-3)/2)
+    	 printf(" ");
+
+    	printf("*");
+    	PFN;
+    }
+
+    FOR(i,1,(n+1)/2)
+    {
+    	printf("*");
+    }
+    FOR(i,1,(n-3)/2)
+    {
+    	printf(" ");
+    }
+    printf("*");
     return 0;
 }
  

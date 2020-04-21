@@ -1,13 +1,13 @@
 /*  AUTHOR: AKASH JAIN
 *   EMAIL:  akash19jain@gmail.com
 *   ID:     akash19jain  
-*   DATE:   20-02-2020 23:06:53
+*   DATE:   19-04-2020 21:26:17
 */
 
 
-#include<algorithm>
-#include <bits/stdc++.h>
-using namespace std;
+// #include<algorithm>
+// #include <bits/stdc++.h>
+// using namespace std;
  
 #include<stdio.h>
 #include<math.h>
@@ -41,6 +41,8 @@ using namespace std;
 #define SWAP(a,b)       ll z=a;a=b;b=z
 #define SWAPC(a,b)      char z=a;a=b;b=z
 #define FLSH            fflush(stdout)
+#define faster          ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define all(x) (x).begin(), (x).end()
 typedef long long ll;
 typedef unsigned long long ull;
 const ll INF = 1<<29;
@@ -63,92 +65,10 @@ ll FLOOR(ll x,ll y);
 
 int main()
 {
-    ll books,lib,days;
-    SC3(books,lib,days);
-    ll l=lib;
-    ll b=books;
-    ll score[b];
-    SCA(score,b);
-    ll arr[l][3];
-    ll arr1[l][1005];
-    double points[l][2];
-    REP(i,l)
-    {
-        SC3(arr[i][0],arr[i][1],arr[i][2]);
-        double z=(arr[i][2]/(days-arr[i][1]));
-        points[i][0]=z;
-        points[i][1]=i;
-        REP(j,arr[i][0])
-            SC1(arr1[i][j]);
-    }
-    REP(i,l)
-    {
-        FOR(j,i+1,l-1)
-        {
-            if(points[i][0]<points[j][0])
-            {
-                double z=points[i][0];
-                points[i][0]=points[j][0];
-                points[j][0]=z;
-                z=points[i][1];
-                points[i][1]=points[j][1];
-                points[j][1]=z;
-            }
-        }
-    }
-    ll lastshipped=0;
-    ll signedup=0;
-    ll ans[l],a=0;
-    ll numberbooks[l],a2=0;
-    MEM(numberbooks,0);
-    ll whichbooks[l][1005];
-    REP(i,l)
-    {
-        ll c=(ll)points[i][1];
-        ll abhi=arr[c][1];
-        lastshipped+=abhi;
-        if(lastshipped>days)
-            break;
-        ans[a]=c;
-        ll bookscanned=0;
-        ll a1=0;
-        ll cdays=0,ccdays=0;
-        REP(j,arr[c][0])
-        {
-            ll c1=arr1[i][j];
-            if(score[c1]!=-1)
-            {
-                bookscanned++;
-                whichbooks[a][a1]=c1;
-                a1++;
-                score[c1]=-1;
-                cdays++;
-                numberbooks[a]++;
-                if(cdays==arr[i][1])
-                {
-                    cdays=0;
-                    ccdays++;
-                }
-                if(ccdays+lastshipped==days)
-                    break;
-            }
-
-        }
-        if(numberbooks[a]==0)
-            a--;
-        a++;
-        signedup++;
-    }
-    PF1(signedup);
-    REP(i,a)
-    {
-        PF2(ans[i],numberbooks[i]);
-        //PF1(numberbooks[i]);
-        REP(j,numberbooks[i])
-            printf("%lld ",whichbooks[i][j]);
-        PFN;
-
-    }
+    #ifndef ONLINE_JUDGE 
+        freopen("F:\\COMPETITIVE-PROGRAMMING\\inp.txt", "r", stdin); 
+        freopen("F:\\COMPETITIVE-PROGRAMMING\\out.txt", "w", stdout);
+    #endif 
 
 
     return 0;

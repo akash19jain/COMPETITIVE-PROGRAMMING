@@ -1,13 +1,13 @@
 /*  AUTHOR: AKASH JAIN
 *   EMAIL:  akash19jain@gmail.com
 *   ID:     akash19jain  
-*   DATE:   02-01-2020 19:14:40
+*   DATE:   19-04-2020 15:41:16
 */
 
 
-// #include<algorithm>
-// #include <bits/stdc++.h>
-// using namespace std;
+#include<algorithm>
+#include <bits/stdc++.h>
+using namespace std;
  
 #include<stdio.h>
 #include<math.h>
@@ -41,6 +41,8 @@
 #define SWAP(a,b)       ll z=a;a=b;b=z
 #define SWAPC(a,b)      char z=a;a=b;b=z
 #define FLSH            fflush(stdout)
+#define faster          ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define all(x) (x).begin(), (x).end()
 typedef long long ll;
 typedef unsigned long long ull;
 const ll INF = 1<<29;
@@ -63,27 +65,18 @@ ll FLOOR(ll x,ll y);
 
 int main()
 {
-    ll n;
-    SC1(n);
-    ll arr[n];
-    SCA(arr,n);
-    ll left=0,right=n-1;
-    while(left<right)
-    {
-    	while(arr[left]==0 && left<right)
-    		left++;
-    	while(arr[right]==1 && left<right)
-    		right--;
+    #ifndef ONLINE_JUDGE 
+        freopen("F:\\COMPETITIVE-PROGRAMMING\\inp.txt", "r", stdin); 
+        freopen("F:\\COMPETITIVE-PROGRAMMING\\out.txt", "w", stdout);
+    #endif 
 
-    	if(left<right)
-    	{
-    		arr[left]=0;
-    		arr[right]=1;
-    		left++;
-    		right--;
-    	}
+    CASES
+    {
+    	ll n;
+    	SC1(n);
+    	ll ans=__builtin_popcount(n);
+    	PF1(ans);
     }
-    PFA(arr,n);
     return 0;
 }
  
