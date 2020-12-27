@@ -1,7 +1,7 @@
 /*  AUTHOR: AKASH JAIN
 *   EMAIL:  akash19jain@gmail.com
 *   ID:     akash19jain
-*   DATE:   26-10-2020 18:21:36
+*   DATE:   05-11-2020 15:37:04
 */
 
 
@@ -62,7 +62,30 @@ ll chartoint(char ch);
 ll CEIL(ll x, ll y);
 ll FLOOR(ll x, ll y);
 
+ll power(ll a, ll b)
+{
+	ll res = 1;
+	a = a % MOD;
+	while (b)
+	{
+		if (b & 1)
+		{
+			res = res * a;
+			res = res % MOD;
+		}
+		b >>= 1;
+		a = a * a;
+		a = a % MOD;
+	}
+	return res;
+}
 
+ll nc2(ll n)
+{
+	if (n < 2)
+		return 0;
+	return (n * (n - 1)) / 2;
+}
 int main()
 {
 #ifndef ONLINE_JUDGE
@@ -76,67 +99,79 @@ int main()
 		SC1(n);
 		ll arr[n];
 		SCA(arr, n);
-		ll s1 = 0, s2 = 0;
+		map<ll, ll> mp;
 		REP(i, n)
 		{
-			if (i % 2 == 0)
-				s1 += arr[i];
-			else
-				s2 += arr[i];
+			mp[arr[i]] = i;
 		}
-		PF1(maxv(s1, s2));
+		sort(arr, arr + n);
+
+		ll ans[n];
+		REP(i, n)
+		{
+			ll a1 = power(2, i) - 1;
+			ll a2 = power(2, i);
+			a2 = a2 * (n - i - 1);
+			a2 = a2 % MOD;
+			ll a3 = power(2, i);
+			a3 = a3 * nc2(n - 1 - i);
+			ans[mp[arr[i]]] = ((a1 + a2) % MOD + a3) % MOD;
+		}
+		PFA(ans, n);
 	}
-	//cout << "Runtime is:" << clock() * 1.0 / CLOCKS_PER_SEC << endl;
+	return 0;
+}
+
 
 //qsort(arr,n,sizeof(arr[0]),cmp);
-	int cmp (const void * a, const void * b)
-	{
-		if ( *(ll*)a - * (ll*)b < 0 ) return -1;
-		if ( *(ll*)a - * (ll*)b > 0 ) return 1;
-		return 0;
-	}
-	long long maxv(long long a, long long b)
-	{
-		if (a > b) return a;
-		return b;
-	}
-	long long minv(long long a, long long b)
-	{
-		if (a < b) return a;
-		return b;
-	}
-	long long gcd(long long u, long long v)
-	{
-		if (v == 0) return u;
-		return gcd(v, u % v);
-	}
-	long long digits(long long n)    //to calculate no of digits in a number
-	{
-		return floor(log10(n)) + 1;
-	}
-	bool ispoweroftwo(long long x)
-	{
-		return x && (!(x & (x - 1)));
-	}
-	bool isvowel(char x)
-	{
-		return (x == 'a' || x == 'e' || x == 'i' || x == 'o' || x == 'u' );
-	}
-	ll chartoint(char ch)
-	{
-		if (ch >= 'A' && ch <= 'Z') return (ch - 'A');
-		else if (ch >= '0' && ch <= '9') return (ch - '0');
-		else if (ch >= 'a' && ch <= 'z') return (ch - 'a');
-		else return 0;
-	}
-	ll CEIL(ll x, ll y)
-	{
-		if (x % y == 0) return (x / y);
-		else return (x / y + 1);
-	}
+int cmp (const void * a, const void * b)
+{
+	if ( *(ll*)a - * (ll*)b < 0 ) return -1;
+	if ( *(ll*)a - * (ll*)b > 0 ) return 1;
+	return 0;
+}
+long long maxv(long long a, long long b)
+{
+	if (a > b) return a;
+	return b;
+}
+long long minv(long long a, long long b)
+{
+	if (a < b) return a;
+	return b;
+}
+long long gcd(long long u, long long v)
+{
+	if (v == 0) return u;
+	return gcd(v, u % v);
+}
+long long digits(long long n)    //to calculate no of digits in a number
+{
+	return floor(log10(n)) + 1;
+}
+bool ispoweroftwo(long long x)
+{
+	return x && (!(x & (x - 1)));
+}
+bool isvowel(char x)
+{
+	return (x == 'a' || x == 'e' || x == 'i' || x == 'o' || x == 'u' );
+}
+ll chartoint(char ch)
+{
+	if (ch >= 'A' && ch <= 'Z') return (ch - 'A');
+	else if (ch >= '0' && ch <= '9') return (ch - '0');
+	else if (ch >= 'a' && ch <= 'z') return (ch - 'a');
+	else return 0;
+}
+ll CEIL(ll x, ll y)
+{
+	if (x % y == 0) return (x / y);
+	else return (x / y + 1);
+}
 
-	ll FLOOR(ll x, ll y)
-	{
-		if (x % y == 0) return (x / y);
-		else return (x / y - 1);
-	}
+ll FLOOR(ll x, ll y)
+{
+	if (x % y == 0) return (x / y);
+	else return (x / y - 1);
+}

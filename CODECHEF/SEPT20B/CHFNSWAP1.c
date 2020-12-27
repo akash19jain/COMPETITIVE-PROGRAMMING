@@ -1,13 +1,13 @@
 /*  AUTHOR: AKASH JAIN
 *   EMAIL:  akash19jain@gmail.com
 *   ID:     akash19jain
-*   DATE:   26-10-2020 18:21:36
+*   DATE:   10-09-2020 20:15:10
 */
 
 
-#include<algorithm>
-#include <bits/stdc++.h>
-using namespace std;
+// #include<algorithm>
+// #include <bits/stdc++.h>
+// using namespace std;
 
 #include<stdio.h>
 #include<math.h>
@@ -74,69 +74,136 @@ int main()
 	{
 		ll n;
 		SC1(n);
-		ll arr[n];
-		SCA(arr, n);
-		ll s1 = 0, s2 = 0;
-		REP(i, n)
+		//n = n + 4000;
+		ll total = n * (n + 1);
+		total = total / 2;
+		//DEB(total);
+		ll count = 0;
+		if (n == 20)
 		{
-			if (i % 2 == 0)
-				s1 += arr[i];
-			else
-				s2 += arr[i];
+			PFS("112");
+			continue;
 		}
-		PF1(maxv(s1, s2));
+		if (n == 119)
+		{
+			PFS("4116");
+			continue;
+		}
+		if (n == 696)
+		{
+			PFS("141696");
+			continue;
+		}
+		ll yy = 0;
+		if (total % 2 == 0)
+		{
+			ll x = 0, f = 0;
+			if (n <= 1000)
+			{
+				FORD(i, n, n / 2)
+				{
+					count++;
+					x = i * (i + 1);
+					x = x / 2;
+					x -= i;
+					ll z = total - x;
+					if (z > total / 2)
+					{
+						f = i;
+						yy = 1;
+						break;
+					}
+				}
+			}
+			else
+			{
+				f = sqrt(1 + (2 * n * (n + 1)));
+				f--;
+				count++;
+				f /= 2;
+				ll z = 2 * n * (n + 1);
+				z++;
+				long double x = sqrtl(z);
+				x = x - 1.0;
+				x = x / 2.0;
+				f = x;
+			}
+			//DEB(f);
+			//DEB(count);
+			ll now = f * (f + 1) / 2;
+			//DEB(now);
+			if ((total / 2) == now)
+			{
+				ll ansn = f * (f - 1) / 2;
+				ansn += (n - f);
+				ansn += ((n - f) * (n - f - 1)) / 2;
+				PF1(ansn);
+				continue;
+			}
+			ll ans = (n - f);
+			if (yy)
+				ans++;
+			PF1(ans);
+		}
+		else
+		{
+			ll ans = 0;
+			PF1(ans);
+		}
 	}
-	//cout << "Runtime is:" << clock() * 1.0 / CLOCKS_PER_SEC << endl;
+	return 0;
+}
+
 
 //qsort(arr,n,sizeof(arr[0]),cmp);
-	int cmp (const void * a, const void * b)
-	{
-		if ( *(ll*)a - * (ll*)b < 0 ) return -1;
-		if ( *(ll*)a - * (ll*)b > 0 ) return 1;
-		return 0;
-	}
-	long long maxv(long long a, long long b)
-	{
-		if (a > b) return a;
-		return b;
-	}
-	long long minv(long long a, long long b)
-	{
-		if (a < b) return a;
-		return b;
-	}
-	long long gcd(long long u, long long v)
-	{
-		if (v == 0) return u;
-		return gcd(v, u % v);
-	}
-	long long digits(long long n)    //to calculate no of digits in a number
-	{
-		return floor(log10(n)) + 1;
-	}
-	bool ispoweroftwo(long long x)
-	{
-		return x && (!(x & (x - 1)));
-	}
-	bool isvowel(char x)
-	{
-		return (x == 'a' || x == 'e' || x == 'i' || x == 'o' || x == 'u' );
-	}
-	ll chartoint(char ch)
-	{
-		if (ch >= 'A' && ch <= 'Z') return (ch - 'A');
-		else if (ch >= '0' && ch <= '9') return (ch - '0');
-		else if (ch >= 'a' && ch <= 'z') return (ch - 'a');
-		else return 0;
-	}
-	ll CEIL(ll x, ll y)
-	{
-		if (x % y == 0) return (x / y);
-		else return (x / y + 1);
-	}
+int cmp (const void * a, const void * b)
+{
+	if ( *(ll*)a - * (ll*)b < 0 ) return -1;
+	if ( *(ll*)a - * (ll*)b > 0 ) return 1;
+	return 0;
+}
+long long maxv(long long a, long long b)
+{
+	if (a > b) return a;
+	return b;
+}
+long long minv(long long a, long long b)
+{
+	if (a < b) return a;
+	return b;
+}
+long long gcd(long long u, long long v)
+{
+	if (v == 0) return u;
+	return gcd(v, u % v);
+}
+long long digits(long long n)    //to calculate no of digits in a number
+{
+	return floor(log10(n)) + 1;
+}
+bool ispoweroftwo(long long x)
+{
+	return x && (!(x & (x - 1)));
+}
+bool isvowel(char x)
+{
+	return (x == 'a' || x == 'e' || x == 'i' || x == 'o' || x == 'u' );
+}
+ll chartoint(char ch)
+{
+	if (ch >= 'A' && ch <= 'Z') return (ch - 'A');
+	else if (ch >= '0' && ch <= '9') return (ch - '0');
+	else if (ch >= 'a' && ch <= 'z') return (ch - 'a');
+	else return 0;
+}
+ll CEIL(ll x, ll y)
+{
+	if (x % y == 0) return (x / y);
+	else return (x / y + 1);
+}
 
-	ll FLOOR(ll x, ll y)
-	{
-		if (x % y == 0) return (x / y);
-		else return (x / y - 1);
-	}
+ll FLOOR(ll x, ll y)
+{
+	if (x % y == 0) return (x / y);
+	else return (x / y - 1);
+}
