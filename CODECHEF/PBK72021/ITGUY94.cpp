@@ -1,12 +1,20 @@
 /*  AUTHOR: AKASH JAIN
 *   EMAIL:  akash19jain@gmail.com
 *   ID:     akash19jain
-*   DATE:   03-02-2021 20:40:09
+*   DATE:   04-02-2021 22:16:05
 */
 
 
+#include<algorithm>
 #include <bits/stdc++.h>
 using namespace std;
+
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+#include<stdlib.h>
+#include<stdbool.h>
+#include<ctype.h>
 #define SC1(x)          scanf("%lld",&x)
 #define SC2(x,y)        scanf("%lld%lld",&x,&y)
 #define SC3(x,y,z)      scanf("%lld%lld%lld",&x,&y,&z)
@@ -28,7 +36,7 @@ using namespace std;
 #define SZ(a)           strlen(a)
 #define PI              3.1415926535897932384626433832795
 #define DEB(x)          printf("The value of \"%s\" is: %d\n",#x,x)
-#define CASES           ll t;cin>>t;while(t--)
+#define CASES           ll t;SC1(t);while(t--)
 #define ABS(a)          ((a>0)?a:-(a))
 #define SWAP(a,b)       ll z=a;a=b;b=z
 #define SWAPC(a,b)      char z=a;a=b;b=z
@@ -57,50 +65,40 @@ ll FLOOR(ll x, ll y);
 
 int main()
 {
-	faster;
 #ifndef ONLINE_JUDGE
 	freopen("F:\\COMPETITIVE-PROGRAMMING\\inp.txt", "r", stdin);
 	freopen("F:\\COMPETITIVE-PROGRAMMING\\out.txt", "w", stdout);
 #endif
+
 	CASES
 	{
-		string s;
-		cin >> s;
-		//cout << s;
-		ll n = s.length();
-		ll i = 0, j = n - 1;
-		string z, z1;
-		while (i < j)
-		{
-			if (s[i] != s[j])
-			{
-				break;
-			}
-			z += s[i];
-			i++;
-			j--;
-		}
-		if (i >= j)
-		{
-			cout << s << "\n";
-		}
-		else
-		{
-			string ans;
-			ans = ans + z;
-			reverse(z.begin(), z.end());
-			if (s[i] < s[j])
-			{	ṣ
-				ans += s[i];
-			}
-			else
-			{
-				ans += s[j];
-			}
-			ans += z;
-			cout << ans << "\n";
+		ll n;
+		SC1(n);
+		char alp[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
 
+		ll c = (n / 2) + 1;
+		REP(i, c - 1)
+		{
+			REP(j, i + 1)
+			{
+				printf("*");
+			}
+			PFN;
 		}
+		REP(j, c)
+		{
+			cout << alp[j];
+		}
+		PFN;
+		FORD(i, c - 2, 0)
+		{
+			REP(j, i + 1)
+			{
+				printf("*");
+			}
+			PFN;
+		}
+
 	}
 	return 0;
 }
